@@ -13,8 +13,8 @@ class Program
         // Read the file content
         string fileContent = File.ReadAllText(inputFilePath);
 
-        // Updated regex pattern to match CSS blocks starting with h5 { and ending with }
-        string pattern = @"h5\s*\{(?:[^{}]*|\s)*\}";
+        // Regex pattern to match any CSS-like block
+        string pattern = @"[a-zA-Z0-9\s,]+\{(?:[^{}]*|\s)*?\}";
 
         // Remove all matching blocks
         string updatedContent = Regex.Replace(fileContent, pattern, "", RegexOptions.Multiline);
@@ -22,6 +22,6 @@ class Program
         // Write the updated content back to a new file
         File.WriteAllText(outputFilePath, updatedContent);
 
-        Console.WriteLine("Matching blocks have been removed successfully.");
+        Console.WriteLine("All matching CSS blocks have been removed successfully.");
     }
 }
