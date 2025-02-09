@@ -13,11 +13,11 @@ class Program
         // Read the file content
         string fileContent = File.ReadAllText(inputFilePath);
 
-        // Regex pattern to match blocks starting with h5 { and ending with }
-        string pattern = @"(?sm)^h5\s*\{.*?\}";
+        // Updated regex pattern to match CSS blocks starting with h5 { and ending with }
+        string pattern = @"h5\s*\{(?:[^{}]*|\s)*\}";
 
         // Remove all matching blocks
-        string updatedContent = Regex.Replace(fileContent, pattern, "");
+        string updatedContent = Regex.Replace(fileContent, pattern, "", RegexOptions.Multiline);
 
         // Write the updated content back to a new file
         File.WriteAllText(outputFilePath, updatedContent);
